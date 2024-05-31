@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Session - Gobigo Tennis Club</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html">Gobigo Tennis Club</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="images/tennis.png" alt="Tennis Ball" width="32" height="32">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#about-section">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#services-section">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#experts-section">Experts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark text-white" href="services.html">Book</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="booking container">
+        <h2 class="text-center">Book your session</h2>
+        <p class="text-center">Coaching, Training, Stringing or Free-play</p>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Enter">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Enter">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="example@youremail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select class="form-control" id="serviceType">
+                            <option value="" disabled selected>Select a service type</option>
+                            <option>Coaching</option>
+                            <option>Training</option>
+                            <option>Stringing</option>
+                            <option>Free-play</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickExpert">Pick Expert</label>
+                        <select class="form-control" id="pickExpert">
+                        <option value="">Select an expert</option>    
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateTime">Date/Time</label>
+                        <input type="datetime-local" class="form-control" id="dateTime">
+                    </div>
+                    <button type="button" class="btn btn-dark btn-block" onclick="submitForm()">Confirm</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <img id="fedski" src="images/fedski.webp" alt="Booking Image">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div id="footer-logo">
+            <p>GobigoTC</p>
+            <img src="images/tennis.png" alt="Tennis Ball" width="32" height="32">
+        </div>
+        <p class="font-weight-bold"> Contact Us</p>
+        <p>gobigo23@gmail.com</p>
+        <p>1 323-464-3194</p>
+        <p>5851 Clinton St, Los Angeles, CA 90004, USA</p>
+        <div>
+            <a href="#"><img src="images/facebook.png" alt="Facebook" width="32" height="32"></a>
+            <a href="#"><img src="images/x.webp" alt="Twitter" width="32" height="32"></a>
+            <a href="#"><img src="images/instagram.png" alt="Instagram" width="32" height="32"></a>
+            
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const serviceType = document.getElementById('serviceType');
+        const pickExpert = document.getElementById('pickExpert');
+
+        const experts = {
+            "Coaching": ["Roger Federer", "Coco Gauff"],
+            "Training": ["Carlos Alcaraz", "Aryna Sabalenka"],
+            "Stringing": ["Nick Kyrgios", "Serena Williams"],
+            "Free-play": ["No expert needed. Freeplay session with your friends."]
+        };
+
+        serviceType.addEventListener('change', function() {
+            const selectedService = serviceType.value;
+            const expertOptions = experts[selectedService] || [];
+
+            // Clear previous options
+            pickExpert.innerHTML = '';
+
+            // Insert the prompt option
+            pickExpert.insertAdjacentHTML('afterbegin', '<option value="" disabled selected>Select an expert</option>');
+
+            // Insert new options
+            pickExpert.innerHTML += expertOptions.map(expert => `<option value="${expert}">${expert}</option>`).join('');
+        });
+
+        function submitForm() {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const serviceType = document.getElementById('serviceType').value;
+        const pickExpert = document.getElementById('pickExpert').value;
+        const dateTime = document.getElementById('dateTime').value;
+
+        const bookingData = {
+            firstName,
+            lastName,
+            email,
+            serviceType,
+            pickExpert,
+            dateTime
+        };
+
+        localStorage.setItem('bookingData', JSON.stringify(bookingData));
+        window.location.href = 'confirmation.html';
+    }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+
+/* Header/Footer/Primary  Styles and index.html styles */ 
+
+body {
+    font-family: Inter, sans-serif;
+}
+.navbar {
+    background-color: #81C784;
+}
+.navbar-nav .nav-link {
+    color: #000;
+}
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.hero p {
+    font-size: 1.2em;
+    color: #666;
+}
+.about, .hours, .services, .experts {
+    padding: 50px 20px;
+}
+.about img, .hours img, .experts img {
+    width: 100%;
+    height: auto;
+}
+.contact-info {
+    margin-top: 20px;
+}
+.service {
+    margin-bottom: 30px;
+}
+.experts .card {
+    margin-bottom: 20px;
+}
+.footer {
+    background-color: #81C784;
+    padding: 20px;
+    text-align: center;
+}
+
+#small {
+    width: 32px;
+    height: auto;
+}
+
+#footer-logo {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.col-md-6 {
+    padding: 15px;
+}
+
+.hours {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+
+
+/*  services.html styles */
+
+main {
+    padding: 40px;
+}
+
+.pricing, .free-play {
+    margin-bottom: 40px;
+}
+
+
+.service-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+}
+
+.service-card h3 {
+    font-size: 24px;
+}
+
+.service-card p {
+    font-size: 18px;
+}
+
+
+.service-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.service-card ul li {
+    margin-bottom: 10px;
+}
+
+
+.free-play .price {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* booking.html styles */
+
+.booking {
+    padding: 50px 20px;
+}
+
+.booking img {
+    width: 100%;
+    height: auto;
+}
+
+.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#fedski {
+    width: 570px;
+    height: auto;
+    padding-top: 40px;
+
+}
+
+/* confrimation.html styles */
+
+.confirmation {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+
+
+
