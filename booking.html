@@ -23,6 +23,12 @@
                     <a class="nav-link" href="index.html#about-section">About Us</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="bundles.html">Deals/Bundles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calendar.html">Tournaments</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="index.html#services-section">Services</a>
                 </li>
                 <li class="nav-item">
@@ -37,7 +43,7 @@
 
     <div class="booking container">
         <h2 class="text-center">Book your session</h2>
-        <p class="text-center">Coaching, Training, Stringing or Free-play</p>
+        <p class="text-center"><span style="color: #81C784">Coaching, Training, Stringing or Free-play</span></p>
         <div class="row">
             <div class="col-md-6">
                 <form class="booking-form">
@@ -71,15 +77,45 @@
                         <option value="">Select an expert</option>    
                         </select>
                     </div>
+                    <div class="form-group" id="courtNumberGroup" style="display: none;">
+                        <label for="courtNumber">Court Number</label>
+                        <select class="form-control" id="courtNumber">
+                            <option value="">Select a court</option>
+                            <option value="1">Court 1</option>
+                            <option value="2">Court 2</option>
+                            <option value="3">Court 3</option>
+                            <option value="4">Court 4</option>
+                        </select>
+                    </div>
                     <div class="form-group">
-                        <label for="dateTime">Date/Time</label>
-                        <input type="datetime-local" class="form-control" id="dateTime">
+                        <label for="dateTime">Date</label>
+                        <input type="date" class="form-control" id="dateTime" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickTime">Pick 1 hour timeslot</label>
+                        <select class="form-control" id="timeslot">
+                            <option value="" disabled selected>Select a timeslot</option>                          
+                            <option>8:00am - 9:00am</option>
+                            <option>9:00am - 10:00am</option>
+                            <option>10:00am - 11:00am</option>
+                            <option>11:00am - 12:00pm</option>
+                            <option>12:00pm - 1:00pm</option>
+                            <option>1:00pm - 2:00pm</option>
+                            <option>2:00pm - 3:00pm</option>
+                            <option>3:00pm - 4:00pm</option>
+                            <option>4:00pm - 5:00pm</option>
+                            <option>5:00pm - 6:00pm</option>
+                            <option>6:00pm - 7:00pm</option>
+                            <option>7:00pm - 8:00pm</option>
+                            <option>8:00pm - 9:00pm</option>
+                        </select>
                     </div>
                     <button type="button" class="btn btn-dark btn-block" onclick="submitForm()">Confirm</button>
                 </form>
             </div>
             <div class="col-md-6">
-                <img id="fedski" src="images/fedski.webp" alt="Booking Image">
+                <img id="fedski" src="images/courtviewfinal.jpg" alt="Booking Image">
             </div>
         </div>
     </div>
@@ -115,6 +151,7 @@
             "Free-play": ["No expert needed. Freeplay session with your friends."]
         };
 
+
         serviceType.addEventListener('change', function() {
             const selectedService = serviceType.value;
             const expertOptions = experts[selectedService] || [];
@@ -129,6 +166,17 @@
             pickExpert.innerHTML += expertOptions.map(expert => `<option value="${expert}">${expert}</option>`).join('');
         });
 
+        //handling court number display if Stringing is selected
+        document.getElementById('serviceType').addEventListener('change', function() {
+            const serviceType = this.value;
+            const courtNumberGroup = document.getElementById('courtNumberGroup');
+            if (serviceType !== 'Stringing' && serviceType !== '') {
+                courtNumberGroup.style.display = 'block';
+            } else {
+                courtNumberGroup.style.display = 'none';
+            }
+        });
+
         function submitForm() {
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
@@ -136,6 +184,8 @@
         const serviceType = document.getElementById('serviceType').value;
         const pickExpert = document.getElementById('pickExpert').value;
         const dateTime = document.getElementById('dateTime').value;
+        const timeslot = document.getElementById('timeslot').value;
+        const courtNumber = document.getElementById('courtNumber').value;
 
         const bookingData = {
             firstName,
@@ -143,12 +193,22 @@
             email,
             serviceType,
             pickExpert,
-            dateTime
+            dateTime,
+            timeslot
+            
         };
+
+        if (serviceType !== 'Stringing' && serviceType !== '') {
+            const courtNumber = document.getElementById('courtNumber').value;
+            bookingData.courtNumber = courtNumber;
+        }
 
         localStorage.setItem('bookingData', JSON.stringify(bookingData));
         window.location.href = 'confirmation.html';
     }
+
+   
+    
 
     </script>
 

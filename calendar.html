@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gobigo Tennis Club</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    </head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html">Gobigo Tennis Club</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="images/tennis.png" alt="Tennis Ball" width="32" height="32">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#about-section">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bundles.html">Deals/Bundles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calendar.html">Tournaments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#services-section">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#experts-section">Experts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark text-white" href="services.html">Book</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="controls">
+            <input type="date" id="selectDate">
+            <button class="btn btn-dark" onclick="populateCalendar()">Select Date</button>
+        </div>
+        <div class="calendar-container">
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th class="time-slot">Time</th>
+                        <th>Court 1</th>
+                        <th>Court 2</th>
+                        <th>Court 3</th>
+                        <th>Court 4</th>
+                        <th>Court 5</th>
+                        <th>Court 6</th>
+                        <th>Court 7</th>
+                        <th>Court 8</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div id="footer-logo">
+            <p>GobigoTC</p>
+            <img src="images/tennis.png" alt="Tennis Ball" width="32" height="32">
+        </div>
+        <p class="font-weight-bold"> Contact Us</p>
+        <p>gobigo23@gmail.com</p>
+        <p>1 323-464-3194</p>
+        <p>5851 Clinton St, Los Angeles, CA 90004, USA</p>
+        <div>
+            <a href="#"><img src="images/facebook.png" alt="Facebook" width="32" height="32"></a>
+            <a href="#"><img src="images/x.webp" alt="Twitter" width="32" height="32"></a>
+            <a href="#"><img src="images/instagram.png" alt="Instagram" width="32" height="32"></a>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+    <script>
+        const mockTournamentData = [
+            { court: 1, start: 9, end: 10, title: "Tournament A" },
+            { court: 2, start: 10, end: 11, title: "Tournament B" },
+            { court: 3, start: 11, end: 12, title: "Tournament C" },
+            { court: 4, start: 12, end: 13, title: "Tournament D" },
+            { court: 5, start: 13, end: 14, title: "Tournament E" },
+            { court: 6, start: 14, end: 15, title: "Tournament F" },
+            { court: 7, start: 15, end: 16, title: "Tournament G" },
+            { court: 8, start: 16, end: 17, title: "Tournament H" },
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateCalendar();
+        });
+
+        function populateCalendar() {
+            const calendarBody = document.getElementById('calendar-body');
+            calendarBody.innerHTML = ''; // Clear previous rows
+
+            const startTime = 9;
+            const endTime = 22;
+
+            for (let hour = startTime; hour <= endTime; hour++) {
+                const row = document.createElement('tr');
+
+                const timeCell = document.createElement('td');
+                timeCell.classList.add('time-slot');
+                timeCell.textContent = `${hour}:00 - ${hour + 1}:00`;
+                row.appendChild(timeCell);
+
+                for (let court = 1; court <= 8; court++) {
+                    const cell = document.createElement('td');
+                    const tournament = mockTournamentData.find(t => t.court === court && t.start === hour);
+
+                    if (tournament) {
+                        cell.textContent = tournament.title;
+                        cell.style.backgroundColor = '#d1e7dd'; // Light green background for booked slots
+                    } else {
+                        cell.textContent = '';
+                    }
+
+                    row.appendChild(cell);
+                }
+
+                calendarBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -24,6 +24,7 @@ body {
 }
 .about, .hours, .services, .experts {
     padding: 50px 20px;
+    
 }
 .about img, .hours img, .experts img {
     width: 100%;
@@ -37,6 +38,18 @@ body {
 }
 .experts .card {
     margin-bottom: 20px;
+    border-radius: 20px;
+    
+}
+
+.experts {
+    background-color: #81C784;
+    margin-bottom: 80px;
+    border-radius: 40px;
+}
+
+.experts h2 {
+    color: #f8f9fa;
 }
 .footer {
     background-color: #81C784;
@@ -63,6 +76,14 @@ body {
     padding-top: 30px;
     padding-bottom: 15px;
 }
+
+.card img{
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 100%;
+}
+
+
 
 
 
@@ -101,8 +122,8 @@ main {
 
 
 .service-card ul {
-    list-style: none;
-    padding: 0;
+    
+    padding-top: 20px;
     text-align: left;
 }
 
@@ -133,9 +154,10 @@ main {
 }
 
 #fedski {
-    width: 570px;
+    width: 700px;
     height: auto;
-    padding-top: 40px;
+    padding-top: 75px;
+    padding-left: 15px;
 
 }
 
@@ -144,6 +166,67 @@ main {
 .confirmation {
     text-align: center;
     padding: 50px 20px;
+}
+
+/* calendar.html styles */
+.calendar-container {
+    
+    max-width: 1000px;
+    margin: 50px auto;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.calendar-table th,
+.calendar-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.calendar-table th {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+}
+.time-slot {
+    background-color: #f8f9fa;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+.controls {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* bundles.html styles */
+.bundle {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.bundle h3 {
+    margin-top: 0;
+}
+.buy-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #81C784;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buy-btn:hover {
+    background-color: #628221;
 }
 
 

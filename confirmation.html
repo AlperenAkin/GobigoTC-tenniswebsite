@@ -63,19 +63,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const bookingData = JSON.parse(localStorage.getItem('bookingData'));
-            if (bookingData) {
-                const bookingDetails = `
-                    <p><strong>First Name:</strong> ${bookingData.firstName}</p>
-                    <p><strong>Last Name:</strong> ${bookingData.lastName}</p>
-                    <p><strong>Email:</strong> ${bookingData.email}</p>
-                    <p><strong>Service Type:</strong> ${bookingData.serviceType}</p>
-                    <p><strong>Expert:</strong> ${bookingData.pickExpert}</p>
-                    <p><strong>Date/Time:</strong> ${bookingData.dateTime}</p>
-                `;
-                document.getElementById('bookingDetails').innerHTML = bookingDetails;
-            } else {
-                document.getElementById('bookingDetails').innerHTML = '<p>No booking details found.</p>';
+            const confirmationDetails = document.getElementById('bookingDetails');
+
+            let confirmationHTML = `
+                <p><strong>First Name:</strong> ${bookingData.firstName}</p>
+                <p><strong>Last Name:</strong> ${bookingData.lastName}</p>
+                <p><strong>Email:</strong> ${bookingData.email}</p>
+                <p><strong>Service Type:</strong> ${bookingData.serviceType}</p>
+                <p><strong>Expert:</strong> ${bookingData.pickExpert}</p>
+                <p><strong>Date/Time:</strong> ${bookingData.dateTime}</p>
+                <p><strong>Timeslot:</strong> ${bookingData.timeslot}</p>
+            `;
+
+            if (bookingData.serviceType !== 'Stringing') {
+                confirmationHTML += `<p><strong>Court Number:</strong> ${bookingData.courtNumber}</p>`;
             }
+
+            confirmationDetails.innerHTML = confirmationHTML;
         });
     </script>
 </body>
